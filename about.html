@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About | APAER Institute Rusororo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" href="images/Screenshot 2026-01-25 082625.png" type="image/x-icon">
+</head>
+<style>
+:root {
+  --primary: #2563eb;
+  --secondary: #1e40af;
+  --dark: #1f2937;
+  --light: #f8fafc;
+  --gray: #64748b;
+  --radius: 12px;
+}
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #ffffff;
+  color: var(--dark);
+  line-height: 1.7;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* CONTAINER */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* NAVBAR */
+header {background:#fff; box-shadow:0 6px 20px rgba(0,0,0,0.08); position:sticky; top:0; z-index:1000;}
+.navbar {display:flex; align-items:center; justify-content:space-between; padding:14px 0; position:relative;}
+.logo {font-weight:600; font-size:14px;}
+.logo span {color:var(--primary); font-weight:700;}
+
+/* NAV LINKS */
+nav {display:flex; align-items:center; gap:20px;}
+nav a {font-weight:500; position:relative; padding:5px 0;}
+nav a::after {content:""; position:absolute; width:0; height:2px; background:var(--primary); left:0; bottom:-3px; transition:0.3s;}
+nav a:hover {color:var(--primary);}
+nav a:hover::after {width:100%;}
+
+/* BUTTONS */
+.buttons {display:flex; gap:10px;}
+.btn {padding:12px 25px; border-radius:var(--radius); font-weight:600; display:inline-block; transition:0.3s;}
+.btn-primary {background:var(--primary); color:#fff;}
+.btn-primary:hover {background:var(--secondary); transform:translateY(-3px);}
+.btn-secondary {background:#e0e7ff; color:var(--primary);}
+.btn-secondary:hover {background:#c7d2fe;}
+
+/* HAMBURGER */
+.hamburger {display:none; flex-direction:column; cursor:pointer;}
+.hamburger span {height:3px; width:26px; background:var(--dark); margin:4px 0; border-radius:5px; transition:0.3s;}
+.hamburger.active span:nth-child(1) {transform:rotate(45deg) translate(5px,6px);}
+.hamburger.active span:nth-child(2) {opacity:0;}
+.hamburger.active span:nth-child(3) {transform:rotate(-45deg) translate(6px,-6px);}
+/* NAVBAR */
+.navbar {
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+}
+
+.logo {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--dark);
+}
+
+.logo span {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+nav a {
+  margin: 0 15px;
+  font-weight: 500;
+  color: var(--dark);
+  position: relative;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  left: 0;
+  bottom: -6px;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: var(--primary);
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* Navbar buttons in About page */
+.navbar .buttons .btn {
+  padding: 12px 25px;   /* match index page */
+  border-radius: var(--radius);
+  font-weight: 600;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.navbar .buttons .btn-primary {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(37,99,235,0.3);
+}
+
+.navbar .buttons .btn-primary:hover {
+  background: var(--secondary);
+  transform: translateY(-3px);
+}
+
+.navbar .buttons .btn-secondary {
+  background: #e0e7ff;
+  color: var(--primary);
+}
+
+.navbar .buttons .btn-secondary:hover {
+  background: #c7d2fe;
+}
+.mobile-buttons{
+  display: none;
+}
+
+/* PAGE HERO */
+.page-hero {
+  background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+    url("https://images.unsplash.com/photo-1588072432836-e10032774350")
+    center/cover no-repeat;
+  color: #fff;
+  padding: 90px 0;
+  text-align: center;
+}
+
+.page-hero h1 {
+  font-size: clamp(32px, 5vw, 44px);
+  margin-bottom: 10px;
+}
+
+.page-hero p {
+  opacity: 0.9;
+}
+
+/* SECTIONS */
+.section {
+  padding: 70px 0;
+}
+
+.section h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: var(--secondary);
+}
+
+.section p {
+  max-width: 900px;
+  color: var(--gray);
+}
+
+/* LISTS */
+.about-list {
+  margin-top: 15px;
+  list-style: none;
+}
+
+.about-list li {
+  background: var(--light);
+  padding: 14px 18px;
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+  border-left: 5px solid var(--primary);
+}
+
+.about-list strong {
+  color: var(--dark);
+}
+
+/* WHATSAPP FLOAT */
+.whatsapp-float {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #25d366;
+  color: #fff;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  z-index: 999;
+  transition: 0.3s;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+/* Core Values Cards */
+.section .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.card {
+  background: #fff;
+  padding: 25px 20px;
+  border-radius: var(--radius);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
+
+.card i {
+  font-size: 36px;
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+
+.card h4 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: var(--secondary);
+}
+
+.card p {
+  color: var(--gray);
+  font-size: 15px;
+}
+.card-img {
+  width: 100%;
+  height: 150px; /* adjust height as needed */
+  overflow: hidden;
+  border-radius: var(--radius);
+  margin-bottom: 15px;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.card-img img:hover {
+  transform: scale(1.05);
+}
+.container section{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-left: 20px;
+}
+.program-card {
+  background: var(--light);
+  border-left: 5px solid var(--primary);
+  padding: 20px 25px;
+  border-radius: var(--radius);
+  font-weight: 500;
+  color: var(--dark);
+  text-align: center;
+  transition: 0.3s;
+}
+
+.program-card:hover {
+  background: #e0e7ff;
+  transform: translateY(-4px);
+}
+/* FOOTER */
+footer {
+  background: #0f172a;
+  color: #cbd5e1;
+  padding: 60px 0 25px;
+  font-size: 14px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.footer h4 {
+  color: #ffffff;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.footer p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer a {
+  display: block;
+  color: #cbd5e1;
+  margin-bottom: 8px;   
+  transition: 0.3s;
+}
+
+.footer a:hover {
+  color: #60a5fa;
+  transform: translateX(5px);
+}
+
+.footer-logo img {
+  width: 60px;
+  margin-bottom: 15px;
+  border-radius: 20px;
+}
+.footer-logo img:hover {width: 100px; margin-bottom: 10px; border-radius: 10px; display:inline-block; margin-right:12px; transition:0.3s;}
+.social-icons a {
+  display: inline-block;
+  margin-right: 12px;
+  font-size: 18px;
+  color: #cbd5e1;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  color: #60a5fa;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #1e293b;
+  padding-top: 15px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+/* RESPONSIVE */
+@media screen and(max-width: 900px) {
+  .nav {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  nav {
+    text-align: center;
+  }
+
+  .hero {
+    text-align: center;
+  }
+  .buttons{
+    display: none;
+  }
+}
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 26px;
+  background: var(--dark);
+  margin: 4px 0;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px,6px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px,-6px);
+}
+
+/* NAVBAR RESPONSIVE */
+@media screen and (max-width: 900px) {
+  nav.nav-links {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 260px;
+    height: 100vh;
+    background: #f8fafc;
+    flex-direction: column;
+    padding: 90px 20px;
+    gap: 20px;
+    transition: 0.3s;
+    z-index: 999;
+    box-shadow: 6px 0 25px rgba(0,0,0,0.2);
+  }
+
+  nav.nav-links.active {
+    left: 0;
+  }
+
+  nav.nav-links a {
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+    border-radius: 8px;
+  }
+
+  nav.nav-links a:hover {
+    background: #e0e7ff;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .buttons {
+    display: none;
+  }
+
+  .mobile-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: auto;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 20px;
+  }
+
+  .logo {
+    font-size: 13px;
+    text-align: left;
+  }
+}
+
+</style>
+
+<body>
+  <script>
+function toggleMenu(){
+  document.getElementById("nav-menu").classList.toggle("active");
+  document.querySelector(".hamburger").classList.toggle("active");
+}
+</script>
+<!-- NAVBAR --> 
+<header class="navbar">
+  <div class="container nav-flex">
+    <a href="index.html">
+      <img src="images/Screenshot 2026-01-25 082625.png" alt="APAER Logo" style="width:50px;height:50px;margin-right:30px;">
+    </a>
+    <div class="logo">
+      Association des Parents Adventistes pour <br>
+      <span>l'Education à Rusororo - APAER</span>
+    </div>
+    <nav class="nav-links" id="nav-menu">
+  <a href="home.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="academics.html">Academics</a>
+  <a href="contact.html">Contact</a>
+  <div class="mobile-buttons">
+    <a href="" class="btn-secondary">Visit APAER</a>
+    <a href="register.html" class="btn-primary">Register Now</a>
+  </div>
+</nav>
+
+    <div class="buttons">
+      <a href="https://www.google.com/maps/dir//Association+des+Parents+Adventistes+pour+l'Education+%C3%A0+Rusororo+-+APAER,+KK+3+Rd,+Kabuga/@-1.949696,30.0548096,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x19db59fe85418123:0x71c8b4ba85c6679d!2m2!1d30.2177304!2d-1.9733484?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D" class="btn btn-secondary" style="margin-right:20px;"><b>Visit APAER ></b></a>
+      <a href="register.html" class="btn btn-primary"><b>Register Now</b></a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  </div>
+</header>
+
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <h1>About APAER Institute Rusororo</h1>
+    <p>Building academic excellence, discipline, and practical skills.</p>
+  </div>
+</section>
+
+<!-- SCHOOL INTRODUCTION -->
+<section class="container section">
+  <h2>School Introduction</h2>
+  <p>
+    APAER Institute Rusororo (Association des Parents Adventistes pour l’Éducation)
+    is a faith-based educational institution located in Rusororo Sector,
+    Gasabo District, City of Kigali. The school provides quality education from
+    Nursery to Secondary and Technical and Vocational Education and Training (TVET),
+    with a strong emphasis on discipline, moral values, and practical skills.
+  </p>
+</section>
+
+<!-- HISTORY -->
+<section class="container section">
+  <h2>Our History</h2>
+  <p>
+    APAER Institute Rusororo was founded by the Association des Parents Adventistes
+    with the aim of providing accessible and quality education to the community.
+    Since its establishment, the school has grown steadily, expanding its academic
+    and TVET programs to meet national education standards.
+  </p>
+
+  <p>
+    <strong>Founding Year:</strong> Established to serve learners with strong academic
+    foundations, Christian values, and employable skills.
+  </p>
+</section>
+
+<!-- VISION & MISSION -->
+<section class="container section">
+  <h2>Vision & Mission</h2>
+
+  <p>
+    <strong>Vision:</strong><br>
+    To be a leading educational institution that produces disciplined,
+    skilled, and morally upright students who contribute positively
+    to national development.
+  </p>
+
+  <p>
+    <strong>Mission:</strong><br>
+    To provide quality education and practical training through
+    competent teaching, discipline, and Christian values,
+    preparing learners for further studies, employment, and self-reliance.
+  </p>
+</section>
+
+<!-- CORE VALUES -->
+<section class="container section">
+  <div class="section-title">
+    <h2>Our Core Values</h2>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <i class="fa-solid fa-shield-halved"></i>
+      <h4>Discipline</h4>
+      <p>Promoting responsibility, respect, and good conduct</p>
+    </div>
+    <div class="card">
+      <i class="fa-solid fa-award"></i>
+      <h4>Excellence</h4>
+      <p>Commitment to high academic and professional standards</p>
+    </div>
+    <div class="card">
+      <i class="fa-solid fa-handshake-angle"></i>
+      <h4>Integrity</h4>
+      <p>Honesty, accountability, and transparency</p>
+    </div>
+    <div class="card">
+      <i class="fa-solid fa-cross"></i>
+      <h4>Faith</h4>
+      <p>Christian values guiding character and leadership</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- SCHOOL ADMINISTRATION -->
+<section class="container section">
+  <h2>School Administration</h2>
+  <div class="card-grid">
+    <!-- School Manager -->
+    <div class="program-card">
+      <div style="margin-bottom:10px;">
+        <img src="images/admin-placeholder.png" alt="School Manager" style="width:100%; height:150px; object-fit:cover; border-radius:var(--radius);">
+      </div>
+      <b>School Manager</b><br>
+      BAYIRINGIRE Seth
+    </div>
+
+    <!-- Head Teacher -->
+    <div class="program-card">
+      <div style="margin-bottom:10px;">
+        <img src="images/admin-placeholder.png" alt="Head Teacher" style="width:100%; height:150px; object-fit:cover; border-radius:var(--radius);">
+      </div>
+      <b>Head Teacher</b><br>
+      To be updated
+    </div>
+
+    <!-- Deputy Head Teacher -->
+    <div class="program-card">
+      <div style="margin-bottom:10px;">
+        <img src="images/admin-placeholder.png" alt="Deputy Head Teacher" style="width:100%; height:150px; object-fit:cover; border-radius:var(--radius);">
+      </div>
+      <b>Deputy Head Teacher</b><br>
+      To be updated
+    </div>
+  </div>
+</section>
+<center>
+      <a href="academics.html" class="btn btn-primary">View All Shooll Administration & Teachers</a>
+    </center>
+
+<!-- FACILITIES -->
+<section class="container section">
+  <div class="section-title">
+    <h2>Our Facilities</h2>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <div class="card-img">
+        <img src="images/Screenshot 2026-01-25 115113.png" alt="Classrooms">
+      </div>
+      <h4>Classrooms</h4>
+      <p>Spacious and well-ventilated learning rooms</p>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img src="images/lab.jpg" alt="Laboratories & Workshops">
+      </div>
+      <h4>Laboratories & Workshops</h4>
+      <p>Practical training for TVET programs</p>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img src="images/library.jpg" alt="Library">
+      </div>
+      <h4>Library</h4>
+      <p>Learning resources for students and teachers</p>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img src="images/playground.jpg" alt="Playground">
+      </div>
+      <h4>Playground</h4>
+      <p>Safe environment for sports and physical activities</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/250788475316" target="_blank" class="whatsapp-float">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container footer">
+
+    <div class="footer-grid">
+
+      <!-- SCHOOL INFO -->
+      <div class="footer-logo">
+        <img src="images/Screenshot 2026-01-25 082625.png" alt="APAER Logo">
+        <p>
+          APAER Institute Rusororo is a faith-based school providing quality
+          education with discipline and Christian values.
+        </p>
+      </div>
+
+      <!-- QUICK LINKS -->
+      <div>
+        <h4>Quick Links</h4>
+        <a href="home.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="academics.html">Academics</a>
+        <a href="register.html">Online Registration</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+
+      <!-- MEDIA -->
+      <div>
+        <h4>Media Center</h4>
+        <a href="gallery.html">Photo Gallery</a>
+        <a href="videos.html">Videos</a>
+        <a href="news.html">School News</a>
+        <a href="events.html">Upcoming Events</a>
+        <a href="announcements.html">Announcements</a>
+      </div>
+
+      <!-- CONTACT -->
+      <div>
+        <h4>Contact Info</h4>
+        <p><i class="fa-solid fa-location-dot"></i> KK 3 Rd, Kabuga, Rwanda</p>
+        <p><i class="fa-solid fa-phone"></i> 0788 899 375</p>
+        <p><i class="fa-solid fa-envelope"></i> info@apaer.ac.rw</p>
+
+        <div class="social-icons">
+          <a href="https://www.facebook.com/p/APAER-rusororo-Institut-100082460463469/?lsrc=lb"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://wa.me/250788475316"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://www.youtube.com/@apaerrusororo4348"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.instagram.com/rusororo_institute_apaer/?hl=en"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="footer-bottom">
+      © 2026 APAER Institute Rusororo. All Rights Reserved.
+      <p>Done by</p><marquee behavior="" direction="upright"><a href="https://tuyishimechristophe.github.io/Portfolio-website/index.html">TUYISHIME Christophe</a></marquee>
+
+    </div>
+
+  </div>
+</footer>
+
+
+<script src="js/script.js"></script>
+</body>
+</html>

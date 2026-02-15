@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Registration | APAER Institute Rusororo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="images/Screenshot 2026-01-25 082625.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+:root {
+  --primary: #2563eb;
+  --secondary: #1e40af;
+  --dark: #1f2937;
+  --light: #f8fafc;
+  --gray: #64748b;
+  --radius: 12px;
+}
+
+/* RESET */
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins", sans-serif;
+}
+body { background:#ffffff; color:var(--dark); line-height:1.7; }
+a { text-decoration:none; color:inherit; }
+
+/* CONTAINER */
+.container { width:90%; max-width:1200px; margin:auto; }
+
+/* NAVBAR */
+.navbar {
+  background:#fff;
+  box-shadow:0 6px 20px rgba(0,0,0,0.08);
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+.nav-flex {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 0;
+}
+.logo { font-weight:600; font-size:14px; color:var(--dark); }
+.logo span { color:var(--primary); font-weight:700; }
+nav a {
+  margin:0 15px;
+  font-weight:500;
+  color:var(--dark);
+  position:relative;
+}
+nav a::after {
+  content:"";
+  position:absolute;
+  width:0;
+  height:2px;
+  background:var(--primary);
+  left:0;
+  bottom:-6px;
+  transition:0.3s;
+}
+nav a:hover { color:var(--primary); }
+nav a:hover::after { width:100%; }
+
+/* Navbar buttons */
+.navbar .buttons { display:flex; gap:15px; }
+.navbar .buttons .btn {
+  padding:12px 25px;
+  border-radius:var(--radius);
+  font-weight:600;
+  display:inline-block;
+  transition:0.3s;
+}
+.navbar .buttons .btn-primary {
+  background:var(--primary);
+  color:#fff;
+  box-shadow:0 10px 20px rgba(37,99,235,0.3);
+}
+.navbar .buttons .btn-primary:hover { background:var(--secondary); transform:translateY(-3px);}
+.navbar .buttons .btn-secondary {
+  background:#e0e7ff; color:var(--primary); display:block; transition:0.3s;
+}
+.navbar .buttons .btn-secondary:hover { background:#c7d2fe;}
+
+/* HERO */
+.hero {
+  background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), 
+              url("https://images.unsplash.com/photo-1588072432836-e10032774350") center/cover no-repeat;
+  color:#fff;
+  padding:120px 0;
+  text-align:center;
+}
+.hero h2 { font-size:clamp(32px,5vw,44px); margin-bottom:15px; }
+.hero p { max-width:650px; margin:0 auto 30px; opacity:0.9; }
+.hero .btn { display:inline-block; margin:5px; padding:13px 28px; border-radius:var(--radius); font-weight:600; transition:0.3s;}
+.hero .btn-primary { background:var(--primary); color:#fff; box-shadow:0 10px 20px rgba(37,99,235,0.3);}
+.hero .btn-primary:hover { background:var(--secondary); transform:translateY(-3px);}
+.hero .btn-secondary { background:#e0e7ff; color:var(--primary);}
+.hero .btn-secondary:hover { background:#c7d2fe; }
+
+/* FORM */
+.form-container {
+  width:90%;
+  max-width:1200px;
+  margin:40px auto;
+  background:#fff;
+  padding:30px;
+  border-radius:var(--radius);
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+h2 { text-align:center; margin-bottom:10px; color:var(--secondary); }
+.subtitle { text-align:center; color:var(--gray); margin-bottom:30px; }
+.section { margin-bottom:30px; }
+.section h3 { color:var(--dark); border-bottom:2px solid #e5e7eb; padding-bottom:8px; margin-bottom:20px; }
+.row { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:15px; }
+.form-group { margin-bottom:15px; }
+label { font-weight:600; display:block; margin-bottom:6px; }
+input, select, textarea { width:100%; padding:10px; border-radius:6px; border:1px solid #cbd5e1; font-size:15px; }
+textarea { resize:vertical; }
+.checkbox { display:flex; gap:10px; font-size:14px; align-items:flex-start; }
+.btn-submit { background:var(--primary); color:#fff; padding:14px; border:none; width:100%; font-size:16px; border-radius:8px; cursor:pointer; }
+.btn-submit:hover { background:var(--secondary); }
+.note { font-size:13px; color:#555; margin-top:10px; text-align:center; }
+/* FOOTER */
+footer { background:#0f172a; color:#cbd5e1; padding:60px 0 25px; font-size:14px; }
+.footer-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:40px; margin-bottom:30px;}
+.footer h4 { color:#fff; margin-bottom:15px; font-size:16px;}
+.footer p { font-size:14px; line-height:1.6; }
+.footer a { display:block; color:#cbd5e1; margin-bottom:8px; transition:0.3s;}
+.footer a:hover { color:#60a5fa; transform:translateX(5px);}
+.footer-logo img { width:60px; margin-bottom:15px; border-radius: 20px;}
+.footer-logo img:hover {width: 100px; margin-bottom: 10px; border-radius: 10px; display:inline-block; margin-right:12px; transition:0.3s;}
+.social-icons a { display:inline-block; margin-right:12px; font-size:18px; color:#cbd5e1; transition:0.3s;}
+.social-icons a:hover { color:#60a5fa;}
+.footer-bottom { text-align:center; border-top:1px solid #1e293b; padding-top:15px; font-size:13px; color:#94a3b8;}
+
+
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="container nav-flex">
+    <a href="home.html">
+      <img src="images/Screenshot 2026-01-25 082625.png" alt="APAER Logo" style="width:50px;height:50px;margin-right:30px;">
+    </a>
+    <div class="logo">
+      Association des Parents Adventistes pour <br>
+      <span>l'Education à Rusororo - APAER</span>
+    </div>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="academics.html">Academics</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="buttons">
+      <a href="https://www.google.com/maps/dir//Association+des+Parents+Adventistes+pour+l'Education+%C3%A0+Rusororo+-+APAER,+KK+3+Rd,+Kabuga/@-1.949696,30.0548096,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x19db59fe85418123:0x71c8b4ba85c6679d!2m2!1d30.2177304!2d-1.9733484?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D" class="btn btn-secondary" style="margin-right:20px;"><b>Visit APAER ></b></a>
+      <a href="register.html" class="btn btn-primary"><b>Register Now</b></a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <h2>Register Your Child at APAER Institute Rusororo</h2>
+    <p>Fill the form below to apply for admission from O'Level to Level 5 (TVET) with discipline, skills & Christian values.</p>
+    <a href="#registration-form" class="btn btn-primary">Apply Now</a>
+    <a href="contact.html" class="btn btn-secondary">Contact Us</a>
+  </div>
+</section>
+
+<!-- FORM -->
+ <section id="registration-form">
+<div class="form-container">
+  <h2>Student Registration Form</h2>
+  <p class="subtitle">APAER Institute Rusororo – Academic Year Application</p>
+
+  <form action="http://localhost:3000/register" method="POST" enctype="multipart/form-data">
+    <!-- STUDENT INFO -->
+    <div class="section">
+      <h3><i class="fa-solid fa-user"></i> Student Information</h3>
+      <div class="row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" name="studentFirstName" required>
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" name="studentLastName" required>
+        </div>
+        <div class="form-group">
+          <label>Date of Birth</label>
+          <input type="date" name="dob" required>
+        </div>
+        <div class="form-group">
+          <label>Gender</label>
+          <select name="gender" required>
+            <option value="">Select</option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Nationality</label>
+          <input type="text" name="nationality" value="Rwandan">
+        </div>
+        <div class="form-group">
+          <label>Student Phone (if any)</label>
+          <input type="tel" name="studentPhone">
+        </div>
+      </div>
+    </div>
+
+    <!-- ACADEMIC INFO -->
+    <div class="section">
+      <h3><i class="fa-solid fa-graduation-cap"></i> Academic Information</h3>
+      <div class="row">
+        <div class="form-group">
+          <label>Academic Level</label>
+          <select name="level" required>
+            <option value="">Select Level</option>
+            <option>O'Level</option>
+            <option>Level 3</option>
+            <option>Level 4</option>
+            <option>Level 5</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Trade / Combination</label>
+          <input type="text" name="trade">
+        </div>
+        <div class="form-group">
+          <label>Previous School</label>
+          <input type="text" name="previousSchool" required>
+        </div>
+        <div class="form-group">
+          <label>Year Completed</label>
+          <input type="number" name="yearCompleted" placeholder="2024">
+        </div>
+      </div>
+    </div>
+
+    <!-- PARENT INFO -->
+    <div class="section">
+      <h3><i class="fa-solid fa-people-roof"></i> Parent / Guardian Information</h3>
+      <div class="row">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" name="parentName" required>
+        </div>
+        <div class="form-group">
+          <label>Relationship</label>
+          <select name="relationship" required>
+            <option>Father</option>
+            <option>Mother</option>
+            <option>Guardian</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" name="parentPhone" required>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" name="parentEmail">
+        </div>
+        <div class="form-group">
+          <label>Home Address</label>
+          <input type="text" name="homeAddress" required>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOCUMENT UPLOAD -->
+    <div class="section">
+      <h3><i class="fa-solid fa-file-upload"></i> Required Documents</h3>
+      <div class="form-group">
+        <label>Student Passport Photo</label>
+        <input type="file" name="photo" accept="image/*" required>
+      </div>
+      <div class="form-group">
+        <label>Parent / Guardian ID</label>
+        <input type="file" name="parent_id" accept="image/*,application/pdf" required>
+      </div>
+      <div class="form-group">
+        <label>Previous School Report</label>
+        <input type="file" name="report" accept="image/*,application/pdf">
+      </div>
+    </div>
+
+    <!-- HEALTH -->
+    <div class="section">
+      <h3><i class="fa-solid fa-notes-medical"></i> Health Information</h3>
+      <textarea name="healthInfo" rows="3" placeholder="If none, write N/A"></textarea>
+    </div>
+
+    <!-- DECLARATION -->
+    <div class="section">
+      <h3><i class="fa-solid fa-file-signature"></i> Declaration</h3>
+      <div class="checkbox">
+        <input type="checkbox" required>
+        <label>
+          I declare that the information provided is true and correct and I agree
+          to abide by the rules and regulations of APAER Institute Rusororo.
+        </label>
+      </div>
+    </div>
+
+    <button type="submit" class="btn-submit">
+      <i class="fa-solid fa-paper-plane"></i> Submit Registration
+    </button>
+    <p class="note">📌 You will receive a confirmation after successful submission.</p>
+
+  </form>
+</div>
+</section>
+<!-- FOOTER -->
+<footer>
+  <div class="container footer">
+    <div class="footer-grid">
+
+      <div class="footer-logo">
+        <a href="home.html"><img src="images/Screenshot 2026-01-25 082625.png" alt="APAER Logo"></a>
+        <p>APAER Institute Rusororo is a faith-based school providing quality education with discipline and Christian values.</p>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <a href="home.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="academics.html">Academics</a>
+        <a href="register.html">Online Registration</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+
+      <div>
+        <h4>Media Center</h4>
+        <a href="gallery.html">Photo Gallery</a>
+        <a href="videos.html">Videos</a>
+        <a href="news.html">School News</a>
+        <a href="events.html">Upcoming Events</a>
+        <a href="announcements.html">Announcements</a>
+      </div>
+
+      <div>
+        <h4>Contact Info</h4>
+        <p><i class="fa-solid fa-location-dot"></i> KK 3 Rd, Kabuga, Rwanda</p>
+        <p><i class="fa-solid fa-phone"></i> 0788 899 375</p>
+        <p><i class="fa-solid fa-envelope"></i> info@apaer.ac.rw</p>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/p/APAER-rusororo-Institut-100082460463469/?lsrc=lb"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://wa.me/250788475316"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://www.youtube.com/@apaerrusororo4348"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.instagram.com/rusororo_institute_apaer/?hl=en"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 APAER Institute Rusororo. All Rights Reserved.
+      <p>Done by</p><marquee behavior="" direction="upright"><a href="https://tuyishimechristophe.github.io/Portfolio-website/index.html">TUYISHIME Christophe</a></marquee>
+    </div>
+
+  </div>
+</footer>
+
+</body>
+</html>
