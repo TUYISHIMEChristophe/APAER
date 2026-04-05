@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Announcements - APAER</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body { background:#0f172a; color:#f1f5f9; font-family:'Poppins', sans-serif; margin:0; padding:0;}
+header{ text-align:center; padding:20px;}
+header h1{ color:#60a5fa; }
+.container{ padding:20px; display:flex; flex-direction:column; gap:15px;}
+.card{ background:#1e293b; border-radius:16px; padding:15px; box-shadow:0 5px 15px rgba(0,0,0,0.5);}
+.card h3{ color:#60a5fa; margin-bottom:5px; }
+.card p{ color:#e2e8f0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Announcements</h1>
+</header>
+<div class="container" id="announcementContainer"></div>
+
+<script>
+const announcementContainer = document.getElementById('announcementContainer');
+const announcements = JSON.parse(localStorage.getItem('announcements') || '[]');
+
+announcements.forEach(item => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `<h3>${item.title}</h3><p>${item.content}</p>`;
+  announcementContainer.appendChild(card);
+});
+</script>
+</body>
+</html>

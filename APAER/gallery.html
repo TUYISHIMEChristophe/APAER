@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Gallery - APAER</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body { background:#0f172a; color:#f1f5f9; font-family:'Poppins', sans-serif; margin:0; padding:0;}
+header{ text-align:center; padding:20px;}
+header h1{ color:#60a5fa; }
+/* Container grid */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Card styling */
+.card {
+  background: #1e293b;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Images & Videos uniform size */
+.card img, .card video {
+  width: 100%;
+  height: auto;      /* keeps full photo/video visible */
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+/* Hover zoom effect */
+.card img:hover, .card video:hover {
+  transform: scale(1.05);
+}
+
+/* Titles under media */
+.card h4 {
+  margin-top: 10px;
+  color: #60a5fa;
+  font-size: 16px;
+}
+
+.card img:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+}.card h3{ color:#60a5fa; margin:10px 0 0 0; font-size:18px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Photo Gallery</h1>
+</header>
+<div class="container" id="galleryContainer"></div>
+
+<script>
+const galleryContainer = document.getElementById('galleryContainer');
+const photos = JSON.parse(localStorage.getItem('photos') || '[]');
+
+photos.forEach(photo => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `<img src="${photo.url}" alt="${photo.title}"><h3>${photo.title}</h3>`;
+  galleryContainer.appendChild(card);
+});
+</script>
+</body>
+</html>

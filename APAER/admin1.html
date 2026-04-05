@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>APAER Admin Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="images/Screenshot 2026-01-25 082625.png" type="image/x-icon">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+
+body {
+  background: #0f172a;
+  color: #f1f5f9;
+  min-height: 100vh;
+  padding:20px;
+  align-items: center;
+  text-align: center;
+  margin-left: 300px;
+}
+
+header{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+header img{
+  width:100px;
+  animation: logoSpin 3s infinite linear;
+}
+
+@keyframes logoSpin{
+  0%{ transform: rotate(0deg);}
+  50%{ transform: rotate(360deg);}
+  100%{ transform: rotate(720deg);}
+}
+
+header h1{
+  color:#60a5fa;
+  margin-top:10px;
+  font-size:28px;
+  animation: fadeInText 1.5s ease forwards;
+  opacity:0;
+}
+
+@keyframes fadeInText{
+  to{ opacity:1;}
+}
+
+.container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+  width:100%;
+  max-width:1200px;
+}
+
+.card{
+  background:#1e293b;
+  padding:15px;
+  border-radius:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.5);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform: translateY(-5px);
+  box-shadow:0 12px 30px rgba(0,0,0,0.7);
+}
+
+.card h2{
+  color:#60a5fa;
+  margin-bottom:10px;
+  font-size:18px;
+}
+
+textarea,input{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border-radius:10px;
+  border:none;
+  outline:none;
+  font-size:14px;
+}
+
+button{
+  background:#2563eb;
+  color:white;
+  padding:8px 18px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#1e40af;
+}
+
+/* Preview Cards */
+.preview-container{
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+  gap:15px;
+  margin-top:15px;
+}
+
+.preview-card{
+  background:#1e293b;
+  padding:10px;
+  border-radius:12px;
+  text-align:center;
+  overflow:hidden;
+  box-shadow:0 5px 15px rgba(0,0,0,0.5);
+}
+
+.preview-card img,
+.preview-card video{
+  width:100%;
+  height:150px;
+  object-fit:cover;
+  border-radius:10px;
+  margin-bottom:5px;
+}
+
+.preview-card h4{
+  color:#60a5fa;
+  font-size:14px;
+  margin:0;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <img src="images/Screenshot 2026-01-25 082625.png" alt="APAER Logo">
+  <h1>APAER Admin Panel</h1>
+</header>
+
+<div class="container">
+
+<!-- Photos -->
+<div class="card">
+  <h2>Add Photo</h2>
+  <input type="text" id="photoTitle" placeholder="Photo Title">
+  <input type="file" id="photoFile" accept="image/*">
+  <button onclick="savePhoto()">Save Photo</button>
+  <div id="photoPreview" class="preview-container"></div>
+</div>
+
+<!-- News -->
+<div class="card">
+  <h2>Add News</h2>
+  <input type="text" id="newsTitle" placeholder="News Title">
+  <textarea id="newsContent" placeholder="News Description"></textarea>
+  <button onclick="saveNews()">Save News</button>
+  <div id="newsPreview" class="preview-container"></div>
+</div>
+
+<!-- Announcements -->
+<div class="card">
+  <h2>Add Announcement</h2>
+  <input type="text" id="announcementTitle" placeholder="Announcement Title">
+  <textarea id="announcementContent" placeholder="Announcement Details"></textarea>
+  <button onclick="saveAnnouncement()">Save Announcement</button>
+  <div id="announcementPreview" class="preview-container"></div>
+</div>
+
+<!-- Events -->
+<div class="card">
+  <h2>Add Event</h2>
+  <input type="text" id="eventTitle" placeholder="Event Title">
+  <textarea id="eventContent" placeholder="Event Description"></textarea>
+  <button onclick="saveEvent()">Save Event</button>
+  <div id="eventPreview" class="preview-container"></div>
+</div>
+
+</div>
+
+<button onclick="logout()" style="margin-top:40px;">Logout</button>
+
+<script>
+// --- SAVE FUNCTIONS ---
+function savePhoto(){
+    const title = document.getElementById('photoTitle').value;
+    const file = document.getElementById('photoFile').files[0];
+    if(!title||!file){ alert('Enter title & select photo'); return;}
+    const reader = new FileReader();
+    reader.onload = e=>{
+        let photos = JSON.parse(localStorage.getItem('photos')||'[]');
+        photos.push({title:title,data:e.target.result});
+        localStorage.setItem('photos',JSON.stringify(photos));
+        document.getElementById('photoTitle').value='';
+        document.getElementById('photoFile').value='';
+        loadPreviews();
+    }
+    reader.readAsDataURL(file);
+}
+
+function saveNews(){
+    const title = document.getElementById('newsTitle').value;
+    const content = document.getElementById('newsContent').value;
+    if(!title||!content){ alert('Enter title & content'); return;}
+    let news = JSON.parse(localStorage.getItem('news')||'[]');
+    news.push({title:title,content:content});
+    localStorage.setItem('news',JSON.stringify(news));
+    document.getElementById('newsTitle').value='';
+    document.getElementById('newsContent').value='';
+    loadPreviews();
+}
+
+function saveAnnouncement(){
+    const title = document.getElementById('announcementTitle').value;
+    const content = document.getElementById('announcementContent').value;
+    if(!title||!content){ alert('Enter title & content'); return;}
+    let announcements = JSON.parse(localStorage.getItem('announcements')||'[]');
+    announcements.push({title:title,content:content});
+    localStorage.setItem('announcements',JSON.stringify(announcements));
+    document.getElementById('announcementTitle').value='';
+    document.getElementById('announcementContent').value='';
+    loadPreviews();
+}
+
+function saveEvent(){
+    const title = document.getElementById('eventTitle').value;
+    const content = document.getElementById('eventContent').value;
+    if(!title||!content){ alert('Enter title & content'); return;}
+    let events = JSON.parse(localStorage.getItem('events')||'[]');
+    events.push({title:title,content:content});
+    localStorage.setItem('events',JSON.stringify(events));
+    document.getElementById('eventTitle').value='';
+    document.getElementById('eventContent').value='';
+    loadPreviews();
+}
+
+// --- LOGOUT ---
+function logout(){
+    window.location.replace('home.html');
+}
+
+// Load previews on page load
+loadPreviews();
+// LOAD ALL CONTENT
+function loadPreviews(){
+    showData('photos','photoPreview','photo');
+    showData('news','newsPreview','news');
+    showData('announcements','announcementPreview','announcement');
+    showData('events','eventPreview','event');
+}
+
+// DISPLAY FUNCTION
+function showData(key, containerId, type){
+    const container = document.getElementById(containerId);
+    container.innerHTML = "";
+
+    let items = JSON.parse(localStorage.getItem(key) || '[]');
+
+    items.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = "preview-card";
+
+        // IMAGE
+        if(type === 'photo'){
+            const img = document.createElement('img');
+            img.src = item.data;
+            card.appendChild(img);
+        }
+
+        // TEXT CONTENT
+        const title = document.createElement('h4');
+        title.textContent = item.title;
+        card.appendChild(title);
+
+        if(item.content){
+            const p = document.createElement('p');
+            p.textContent = item.content;
+            p.style.fontSize = "12px";
+            card.appendChild(p);
+        }
+
+        // DELETE BUTTON
+        const delBtn = document.createElement('button');
+        delBtn.textContent = "Delete";
+        delBtn.style.marginTop = "5px";
+        delBtn.onclick = () => deleteItem(key, index);
+
+        // EDIT BUTTON
+        const editBtn = document.createElement('button');
+        editBtn.textContent = "Edit";
+        editBtn.style.marginTop = "5px";
+        editBtn.style.marginLeft = "5px";
+        editBtn.onclick = () => editItem(key, index);
+
+        card.appendChild(delBtn);
+        card.appendChild(editBtn);
+
+        container.appendChild(card);
+    });
+}
+
+// DELETE FUNCTION
+function deleteItem(key, index){
+    let items = JSON.parse(localStorage.getItem(key) || '[]');
+    items.splice(index,1);
+    localStorage.setItem(key, JSON.stringify(items));
+    loadPreviews();
+}
+
+// EDIT FUNCTION
+function editItem(key, index){
+    let items = JSON.parse(localStorage.getItem(key) || '[]');
+    let item = items[index];
+
+    const newTitle = prompt("Edit Title:", item.title);
+    if(newTitle !== null){
+        item.title = newTitle;
+    }
+
+    if(item.content){
+        const newContent = prompt("Edit Content:", item.content);
+        if(newContent !== null){
+            item.content = newContent;
+        }
+    }
+
+    items[index] = item;
+    localStorage.setItem(key, JSON.stringify(items));
+    loadPreviews();
+}
+</script>
+
+</body>
+</html>

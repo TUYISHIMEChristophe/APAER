@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>APAER Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#1e3a8a,#2563eb);
+  overflow:hidden;
+}
+
+/* FLOATING BACKGROUND */
+.circle{
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,0.1);
+  animation:float 6s infinite ease-in-out;
+}
+.circle:nth-child(1){width:200px;height:200px;top:10%;left:10%;}
+.circle:nth-child(2){width:300px;height:300px;bottom:10%;right:10%;}
+
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-40px);}
+}
+
+/* CARD */
+.card{
+  background:#fff;
+  padding:40px;
+  width:350px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,0.3);
+  transition:1s;
+}
+
+/* LOGO */
+.logo{
+  width:80px;
+  margin-bottom:15px;
+  animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
+}
+
+/* INPUT */
+input{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border:1px solid #ddd;
+  border-radius:10px;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:#2563eb;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#1e40af;
+}
+
+/* HIDDEN DASHBOARD */
+.dashboard{
+  display:none;
+  text-align:center;
+  animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+#error{
+  color:red;
+  margin-top:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="circle"></div>
+<div class="circle"></div>
+
+<div class="card" id="card">
+
+<!-- LOGIN FORM -->
+<div id="loginBox">
+
+<img src="images/Screenshot 2026-01-25 082625.png" class="logo">
+
+<h2>Admin Login</h2>
+
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<div id="error"></div>
+
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+
+<h1>Welcome to APAER Admin Panel 🎉</h1>
+<p>You are now inside APAER admin panel</p>
+<p><span><a href="admin1.html" target="_blank" style="text-decoration: none; ">Continue managing your content!<span>✨</span></a> </span></p>
+
+<br>
+<button onclick="logout()">Logout</button>
+
+</div>
+
+</div>
+
+<script>
+
+function login(){
+  let user = document.getElementById("username").value;
+  let pass = document.getElementById("password").value;
+
+  if(user === "admin" && pass === "1234"){
+
+    // animation transition
+    document.getElementById("loginBox").style.opacity = "0";
+
+    setTimeout(()=>{
+      document.getElementById("loginBox").style.display="none";
+      document.getElementById("dashboard").style.display="block";
+    },500);
+
+  } else {
+    document.getElementById("error").innerText="Wrong username or password!";
+  }
+}
+
+function logout(){
+  location.reload();
+}
+
+</script>
+
+</body>
+</html>
