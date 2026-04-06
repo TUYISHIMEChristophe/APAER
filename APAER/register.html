@@ -856,7 +856,8 @@
             </div>
             <div class="form-group">
               <label>Id</label>
-              <input type="number" min="1" max="16" name="parentid" required>
+              <input type="number" name="parentid" required>
+              <input type="file" name="photo" required>
             </div>
             <div class="form-group">
               <label>Relationship</label>
@@ -1003,7 +1004,8 @@ Year Completed: ${formData.get('yearCompleted') || 'N/A'}
 
 👨‍👩‍👧 *PARENT/GUARDIAN INFORMATION*
 Full Name: ${formData.get('parentName')}
-Id:${formData.get('parentid')}
+Id: ${formData.get('parentid')}
+Id photo:${formData.get('photo')} 
 Relationship: ${formData.get('relationship')}
 Phone: ${formData.get('parentPhone')}
 Email: ${formData.get('parentEmail') || 'N/A'}
