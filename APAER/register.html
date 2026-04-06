@@ -802,7 +802,34 @@
             </div>
             <div class="form-group">
               <label>Trade / Combination</label>
-              <input type="text" name="trade">
+              <select name="level" required>
+                <option value="">Select Combination</option>
+                <option>Senior 1</option>
+                <option>Senior 2</option>
+                <option>Senior 3</option><hr>
+                <option>Senior 4 Accounting</option>
+                <option>Senior 5 Accounting</option>
+                <option>Senior 6 Accounting</option>
+                <option>Level 3 Software Development</option>
+                <option>Level 3 Networking</option>
+                <option>Level 3 Multi-Media Production</option>
+                <option>Level 3 Tourism</option>
+                <option>Level 3 Electronics</option>
+                <option>Level 3 Building Construction</option><hr>
+                <option>Level 4 Software Development</option>
+                <option>Level 4 Networking</option>
+                <option>Level 4 Multi-Media Production</option>
+                <option>Level 4 Tourism</option>
+                <option>Level 4 Electronics</option>
+                <option>Level 4 Building Construction</option><hr>
+                <option>Level 5 Software Development</option>
+                <option>Level 5 Networking</option>
+                <option>Level 5 Multi-Media Production</option>
+                <option>Level 5 Tourism</option>
+                <option>Level 5 Electronics</option>
+                <option>Level 5 Building Construction</option>
+              </select>
+              <!-- <input type="text" name="trade"> -->
             </div>
             <div class="form-group">
               <label>Previous School</label>
@@ -822,6 +849,10 @@
             <div class="form-group">
               <label>Full Name</label>
               <input type="text" name="parentName" required>
+            </div>
+            <div class="form-group">
+              <label>Id</label>
+              <input type="numbers" name="parentid" required>
             </div>
             <div class="form-group">
               <label>Relationship</label>
@@ -967,6 +998,7 @@ Year Completed: ${formData.get('yearCompleted') || 'N/A'}
 
 👨‍👩‍👧 *PARENT/GUARDIAN INFORMATION*
 Full Name: ${formData.get('parentName')}
+Id:${formData.get('parentid')}
 Relationship: ${formData.get('relationship')}
 Phone: ${formData.get('parentPhone')}
 Email: ${formData.get('parentEmail') || 'N/A'}
